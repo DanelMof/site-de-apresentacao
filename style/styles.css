@@ -1,0 +1,622 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+*,html{
+    padding: 0px;
+    margin: 0px;
+    scroll-behavior: smooth;
+}
+
+* {
+    box-sizing: border-box;
+
+    -webkit-touch-callout: none;
+      -webkit-user-select: none;
+       -khtml-user-select: none;
+         -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal
+}
+::-webkit-scrollbar {
+    width: 4px;               /* Largura da barra de rolagem */
+    height: 12px;           /* Altura da barra de rolagem (para rolagem horizontal) */
+}
+
+::-webkit-scrollbar-track {
+    background: #313131;       /* Cor do fundo da barra de rolagem */
+    border-radius: 3px;       /* Bordas arredondadas */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #888;    /* Cor da "pegada" (parte que se move) */
+    border-radius: 10px;       /* Bordas arredondadas */
+    border: 1px solid #cacaca; /* Cria espaço ao redor da pegada */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #555;    /* Cor ao passar o mouse */
+}
+
+.light-theme {
+    --bg-color: #f5f5f5;
+    --bg-color-transparent: #f5f5f5b0;
+    --text-color: #333;
+    --header-bg: #ffffff;
+    --header-color-transparent: #f5f5f500;
+    --footer-bg: #dddddd;
+    --footer-bg-transparent: #dddddd83;
+    --link-color: #333;
+    --button-bg: #212121;
+    --button-color: #ffffff;
+    --card-border:#4f5052;
+    --sugestion:#1c4b72;
+}
+
+.dark-theme {
+    --bg-color: #212121;
+    --bg-color-transparent: #212121dc;
+    --text-color: #ffffff;
+    --header-bg: #141414;
+    --header-color-transparent: #2121218c;
+    --footer-bg: #1b1b1b;
+    --footer-bg-transparent: #1b1b1b7c;
+    --link-color: #f5f5f5;
+    --button-bg: #24aeee;
+    --button-color: #212121;
+    --card-border:#f7f7f7;
+    --sugestion:#27689c;
+}
+
+/* primeira interação (Get User Name) */
+.get_name{
+    background-color: var(--bg-color);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    transition: all ease-in-out 1.35s;
+}
+
+.get_name .container{
+    position: relative;
+    margin: auto;
+    text-align: center;
+    bottom: 50px;
+    width: fit-content;
+    line-height: 40px;
+    left: -30px;
+    top: -70px;
+}
+
+/* Input */
+.get_name .input-style{
+    padding: 10px;
+    border: 2px solid #6c98ca;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #555;
+    outline: none;
+    width: 250px;
+}
+
+.get_name .input-style:focus{
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* botão */
+.btn {
+    outline: 0;
+    align-items: center;
+    justify-content: space-between;
+    background: #007bff;
+    width: 120px;
+    height: 45px;
+    border: 0;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .1);
+    box-sizing: border-box;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.btn:hover {
+    opacity: .95;
+}
+
+.btn .animation {
+    border-radius: 100%;
+    animation: ripple 0.6s linear infinite;
+}
+
+@keyframes ripple {
+    0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.1), 0 0 0 20px rgba(255, 255, 255, 0.1), 0 0 0 40px rgba(255, 255, 255, 0.1), 0 0 0 60px rgba(255, 255, 255, 0.1);
+    }
+
+    100% {
+    box-shadow: 0 0 0 20px rgba(255, 255, 255, 0.1), 0 0 0 40px rgba(255, 255, 255, 0.1), 0 0 0 60px rgba(255, 255, 255, 0.1), 0 0 0 80px rgba(255, 255, 255, 0);
+    }
+}
+
+.get_name .info{
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.get_name.swapped{
+    transform: translateY(-2100px);
+    height: 0px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    transition: all 0.3s, color 0.3s;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    height: 100vh;
+}
+
+header {
+    background-color: var(--header-bg);
+    padding: 1em 2em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--text-color);
+}
+
+header h1 {
+    font-size: 2em;
+    margin-left: 38%;
+}
+
+nav ol {
+    display: flex;
+    list-style: none;
+    gap: 1.5em;
+    padding: 0;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--link-color);
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #1788d3;
+}
+
+footer {
+    background-color: var(--footer-bg);
+    text-align: center;
+    padding: 1em;
+    font-size: 0.9em;
+    color: var(--text-color);
+    border-top: 2px solid var(--text-color);
+    bottom: 0rem;
+    width: 100%;
+    flex-shrink: 0; /* Impede o rodapé de encolher */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    transition: background-color 0.3s, color 0.3s;
+    display: flex;
+    justify-content: center
+    ;
+}
+
+/* Icons */
+.git-hub-icon{
+    position: absolute;
+    width: 40px;
+    right: 0.7rem;
+    bottom: 0.3rem;
+}
+.e-mail{
+    position: absolute;
+    width: 50px;
+    right: 3.5rem;
+    bottom: 0.3rem;
+}
+/* Formulário (Sugestões) */
+aside.formulario {
+    display: none; /* Inicialmente escondido */
+    flex-direction: column;
+    position: absolute;
+    z-index: 9999;
+    right: -100%; /* Fora da tela à direita */
+    top: 4.9em;
+    background-color: var(--sugestion);
+    height: 83.9%;
+    padding: 1rem; /* Adiciona algum espaço interno */
+    box-sizing: border-box; /* Garante que o padding não afete o tamanho do elemento */
+    width: 550px;
+    transition: all 0.4s ease-in-out; /* Animação para deslizar */
+}
+aside.formulario.formulario--active {
+    right: 0; /* Faz o formulário aparecer deslizando */
+}
+/* Impede a rolagem horizontal quando o formulário estiver ativo */
+body.formulario-active {
+    overflow: hidden; /* Remove a barra de rolagem */
+}
+.formulario h2{
+    margin-bottom: 20px;
+    text-align: left;
+    color: white;
+}
+.formulario .back{
+    color: white;
+    background-color: #1c70be;
+    width: 50px;
+    height: 30px;
+    text-align: center;
+    border-radius: 50px;
+    font-size: 20px;
+    margin-bottom: 10px;
+    box-shadow: #000000b2 2.5px 4px 0px 0px;
+    transition: all ease-in-out 0.3s;
+}
+.formulario .back:hover{
+    cursor: pointer;
+    background-color: #3f9ff8;
+}
+form {
+    display: flex;
+    flex-direction: column; /* Faz os campos do formulário ficarem um abaixo do outro */
+    width: 100%; /* Faz o formulário ocupar toda a largura disponível */
+}
+
+textarea {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    width: 100%;
+    height: 100px;
+    border-radius: 10px;
+    box-shadow: #000000b2 4px 7px 0px 0px;
+    margin-bottom: 30px;
+    font-size: 1.4rem;
+}
+.formulario textarea::placeholder {
+    font-size: 18px; /* Ajuste o tamanho da fonte conforme necessário */
+    color: #666; /* Altere a cor se quiser */
+}
+#Op_Button{
+    width: 100%;
+    box-shadow: #000000b2 4px 7px 0px 0px;
+    margin-top: 30px;
+}
+/* Efeito de blur no conteúdo principal */
+.main-blur {
+    filter: blur(5px); /* Desfoque do conteúdo */
+    pointer-events: none; /* Desabilita interações */
+}
+
+li:hover{
+    cursor: pointer;
+}
+
+
+
+/* Card e seção principal */
+#about {
+    padding: 2em;
+}
+#about > h2{
+font-weight: bold;
+margin-bottom: 10px;
+}
+#cards {
+    display: flex;
+    gap: 10px;
+}
+
+.card {
+    width: 200px;
+    height: 250px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #212121;
+    position: relative;
+    transition: width 0.5s ease, height 0.5s ease;
+    background-color: var(--header-bg);
+    border: var(--card-border) 2.5px solid;
+}
+
+.card:hover {
+    width: 300px;
+    height: 350px;
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.card:hover img {
+    transform: scale(1.1);
+}
+
+.card .info {
+    position: absolute;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.438);
+    color: #fff;
+    width: 100%;
+    padding: 10px;
+    transform: translateY(100%);
+    transition: transform 0.5s ease 0.3s;
+    opacity: 0;
+}
+
+.card:hover .info {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.conhecer-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #16a8c2;
+    color: #fff;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.conhecer-btn:hover {
+    background-color: #1c70be;
+    cursor: pointer;
+}
+.arrow{
+    display: none;
+}
+.resumo{
+width: 75%;
+margin-left:30px;
+text-align: justify;
+line-height: 25px;
+}
+.resumo > h2{
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.theme-checkbox {
+    --toggle-size: 12px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 6.25em;
+    height: 3.125em;
+    background: -webkit-gradient(linear, left top, right top, color-stop(50%, #efefef), color-stop(50%, #2a2a2a)) no-repeat;
+    background: -o-linear-gradient(left, #efefef 50%, #2a2a2a 50%) no-repeat;
+    background: linear-gradient(to right, #e6e3e3 50%, #2a2a2a 50%) no-repeat;
+    background-size: 205%;
+    background-position: 0;
+    -webkit-transition: 0.4s;
+    -o-transition: 0.4s;
+    transition: 0.4s;
+    border-radius: 99em;
+    position: absolute;
+    cursor: pointer;
+    font-size: var(--toggle-size);
+    box-shadow: inset #0000008c 0px 0px 8px 3px;
+    margin-top: 20px;
+    margin-left: 30px;
+    z-index: 100000;
+}
+
+.theme-checkbox::before {
+    content: "";
+    width: 2.25em;
+    height: 2.25em;
+    position: absolute;
+    top: 0.438em;
+    left: 0.438em;
+    background: -webkit-gradient(linear, left top, right top, color-stop(50%, #efefef), color-stop(50%, #2a2a2a)) no-repeat;
+    background: -o-linear-gradient(left, #efefef 50%, #2a2a2a 50%) no-repeat;
+    background: linear-gradient(to right, #efefef 50%, #2a2a2a 50%) no-repeat;
+    background-size: 205%;
+    background-position: 100%;
+    border-radius: 50%;
+    -webkit-transition: 0.4s;
+    -o-transition: 0.4s;
+    transition: 0.4s;
+}
+
+.theme-checkbox:checked::before {
+    left: calc(100% - 2.25em - 0.438em);
+    background-position: 0;
+}
+
+.theme-checkbox:checked {
+    background-position: 100%;
+}
+
+/* Animação de "push para cima" */
+@keyframes pushUp {
+    0% {
+        transform: translateY(100%); /* Inicia fora da tela (para baixo) */
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0); /* Volta para sua posição normal */
+        opacity: 1;
+    }
+}
+
+/* Classe de animação para o elemento main */
+.PushUp-animation {
+    animation: pushUp 1s ease-out forwards; /* 1s de duração com efeito 'ease-out' */
+}
+
+
+/* Media-Query */
+
+@media (max-width: 768px) {
+    header{
+        padding: 13px;
+    }
+    nav ol {
+        display: flex;
+        list-style: none;
+        gap: 0.5em;
+        padding: 0;
+    }
+    .e-mail {
+        position: absolute;
+        width: 50px;
+        right: 55%;
+        bottom: 0.3rem;
+    }
+
+    .git-hub-icon {
+        position: absolute;
+        width: 40px;
+        right: 35%;
+        bottom: 0.3rem;
+    }
+    .resumo {
+        width: 90%;
+        height: 100%;
+        margin-left: 30px;
+        text-align: justify;
+        line-height: 25px;
+        overflow: auto;
+    }
+    .resumo > p{
+        height: 80%;
+        text-overflow: ellipsis;
+    }
+    .get_name .container {
+        position: relative;
+        margin: auto;
+        text-align: center;
+        bottom: 50px;
+        width: fit-content;
+        line-height: 40px;
+        left: 0px;
+        top: -100px;
+    }
+    .welcome{
+        font-size: 1.3rem;
+        margin-left: 32%;
+    }
+    footer > p{
+        display: none;
+    }
+    footer{
+        height: 50px;
+    }
+    #cards {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        position: relative;
+    }
+
+    .card {
+        width: 350px;
+        height: 300px;
+        margin: 0;
+        overflow: visible;
+        border: none;
+        transition: none;
+    }
+
+    .card .info {
+        transform: translateY(0);
+        opacity: 1;
+        height: 85px;
+    }
+
+    .card:hover img {
+        transform: scale(1);
+    }
+
+    .card:hover {
+        width: 350px;
+        height: 300px;
+    }
+
+    .card img {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
+        border-radius: 10px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .card .info >p{
+        display: none; /* Oculta as informações adicionais */
+    }
+
+    .conhecer-btn {
+        position: absolute;
+        display: block;
+        padding: 8px 15px;
+        font-size: 14px;
+        top: 35px;
+        left: 5px;
+        z-index: 1000;
+    }
+
+    /* Setas para avançar e retroceder */
+    .arrow {
+        display: block;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 50px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .arrow.prev {
+        left: -25px;
+    }
+
+    .arrow.next {
+        right: -25px;
+    }
+
+    aside.formulario {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        z-index: 9999;
+        right: -100%;
+        top: 5.9em;
+        background-color: var(--sugestion);
+        height: 79.9%;
+        padding: 1rem;
+        box-sizing: border-box;
+        width: 350px;
+        transition: all 0.4s ease-in-out;
+    }
+}
